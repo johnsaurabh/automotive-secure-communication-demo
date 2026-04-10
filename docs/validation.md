@@ -143,6 +143,18 @@ Useful artifacts to mention or screenshot:
 - the threat model risk table
 - the architecture data-flow diagram
 
+## Included Screenshots
+
+The repository includes example screenshots in `screenshots/` that can be viewed directly on GitHub:
+
+- `screenshots/Server_Listening.png`
+- `screenshots/Client_response.png`
+
+These provide quick visual evidence that:
+
+- the TLS server starts successfully
+- the client receives a validated protected acknowledgement
+
 ## Expected Security Outcome
 
 By the end of validation, you should be able to demonstrate:

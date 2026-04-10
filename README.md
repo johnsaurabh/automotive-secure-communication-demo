@@ -113,6 +113,9 @@ AutomotiveSecureComm/
 |   `-- validation.md
 |-- logs/
 |   `-- .gitkeep
+|-- screenshots/
+|   |-- Client_response.png
+|   `-- Server_Listening.png
 |-- tests/
 |   `-- integration_test.py
 |-- .gitignore
@@ -266,6 +269,16 @@ Expected output:
   "status": "accepted"
 }
 ```
+
+## Screenshots
+
+### Server Listener
+
+![Server listening screenshot](screenshots/Server_Listening.png)
+
+### Client Response
+
+![Client response screenshot](screenshots/Client_response.png)
 
 ## Local Test Procedure
 
