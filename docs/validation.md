@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document explains how to verify that the project works correctly and how to demonstrate its security properties in a way that is useful for GitHub readers, interview discussions, and portfolio reviews.
+This document explains how to verify that the project works correctly and how to inspect its security properties.
 
 ## Validation Goals
 
@@ -118,7 +118,7 @@ tls
 - encrypted application data records
 - no readable JSON telemetry string in the packet payload
 
-### What This Demonstrates
+### What This Verifies
 
 - transport-level confidentiality is active
 - session establishment is certificate-backed
@@ -133,7 +133,7 @@ If you want to extend the project, these are useful validation experiments:
 - modify the ciphertext and confirm AES-GCM decryption fails
 - replace the client certificate with an untrusted certificate and confirm the server rejects the connection
 
-## Evidence for GitHub or Interview Discussion
+## Validation Evidence
 
 Useful artifacts to mention or screenshot:
 
@@ -145,7 +145,7 @@ Useful artifacts to mention or screenshot:
 
 ## Included Screenshots
 
-The repository includes example screenshots in `screenshots/` that can be viewed directly on GitHub:
+The repository includes example screenshots in `screenshots/`:
 
 - `screenshots/Server_Listening.png`
 - `screenshots/Client_response.png`
@@ -157,7 +157,7 @@ These provide quick visual evidence that:
 
 ## Expected Security Outcome
 
-By the end of validation, you should be able to demonstrate:
+By the end of validation, you should be able to verify:
 
 - authenticated endpoints
 - encrypted transport

@@ -11,11 +11,11 @@ The project models a simplified communication path between:
 - an in-vehicle ADAS or ECU-like client
 - a backend-facing validation server
 
-The objective is to represent a realistic secure telemetry exchange in a form that is small enough to run locally and easy enough to explain during technical discussion.
+The objective is to represent a realistic secure telemetry exchange in a form that is small enough to run locally and review directly.
 
 ## Architectural Goals
 
-The system is designed to demonstrate:
+The system is designed to cover:
 
 - authenticated communication over IP
 - confidentiality at both transport and application layers
@@ -78,7 +78,7 @@ The crypto package isolates cryptographic operations from transport logic:
 - SHA-256 hashing
 - certificate generation and signing
 
-This separation keeps the system modular and easier to explain or extend.
+This separation keeps the system modular and easier to review or extend.
 
 ### 5. Logging Layer
 
@@ -163,7 +163,7 @@ TLS is enough to protect transport for many systems, but this project intentiona
 - protecting a communication channel
 - protecting the data object itself
 
-This is useful in interviews because it shows system-level thinking rather than tool-level thinking.
+This documents the distinction between system-level controls and individual cryptographic mechanisms.
 
 ### Why Use Mutual TLS
 
@@ -171,7 +171,7 @@ Automotive systems increasingly rely on authenticated machine-to-machine communi
 
 ### Why Use SHA-256 in Addition to AES-GCM
 
-AES-GCM already provides authentication and integrity for ciphertext, but SHA-256 is included to explicitly demonstrate message-digest handling and integrity verification concepts that appear frequently in embedded and automotive security discussions.
+AES-GCM already provides authentication and integrity for ciphertext, but SHA-256 is included to make message-digest handling and integrity verification explicit.
 
 ### Why Structured Logging Matters
 
@@ -197,7 +197,7 @@ Security engineering includes observability. Logging is not only about debugging
 
 ## Operational Assumptions
 
-- the client and server run locally for demonstration
+- the client and server run locally for validation
 - the local CA is trusted only for this demo
 - the host system is not already compromised
 - certificate storage is file-based rather than hardware-backed

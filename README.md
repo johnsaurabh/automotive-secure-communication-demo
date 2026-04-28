@@ -2,22 +2,22 @@
 
 ## Overview
 
-This repository contains a local, end-to-end secure communication system designed to demonstrate the kind of technical depth expected in an automotive cybersecurity engineering role. The project models a simplified telemetry exchange between an ADAS domain controller and a backend validation service, with emphasis on transport security, payload confidentiality, integrity protection, certificate-based authentication, security logging, and threat modeling.
+This repository contains a local, end-to-end secure communication system for a simplified telemetry exchange between an ADAS domain controller and a backend validation service. It focuses on transport security, payload confidentiality, integrity protection, certificate-based authentication, security logging, and threat modeling.
 
 The implementation is intentionally practical:
 
 - It runs locally with Python.
 - It uses standard TCP sockets and TLS 1.3.
 - It adds a separate AES-GCM application encryption layer above TLS.
-- It uses a self-managed local PKI to demonstrate certificate issuance and trust.
+- It uses a self-managed local PKI for certificate issuance and trust.
 - It produces sanitized audit logs for security-relevant activity.
-- It includes architecture, threat modeling, and verification guidance suitable for a public GitHub portfolio project.
+- It includes architecture, threat modeling, and verification guidance.
 
-This project is not presented as a production automotive stack. It is a focused security engineering demonstration that makes design choices explicit and easy to explain in interviews.
+This project is not presented as a production automotive stack. It is a focused security engineering example with explicit design choices and documented limitations.
 
 ## Objectives
 
-The project was built to demonstrate the following capabilities:
+The project includes the following capabilities:
 
 - Secure communication over TCP with TLS 1.3
 - Mutual certificate-based authentication using PKI concepts
@@ -27,6 +27,14 @@ The project was built to demonstrate the following capabilities:
 - Threat modeling using STRIDE
 - Risk assessment using likelihood and impact
 - System-level security reasoning relevant to ADAS, ECUs, gateways, and backend communication
+
+## Tech Stack
+
+- Python 3.11+
+- Standard library: `socket`, `ssl`, `json`, `logging`, `argparse`
+- `cryptography` for AES-GCM, RSA keys, X.509 certificates, and local PKI generation
+- TLS 1.3 with mutual certificate authentication
+- Markdown documentation with STRIDE-based threat modeling
 
 ## Why This Is Relevant for Automotive Cybersecurity
 
@@ -38,7 +46,7 @@ Modern vehicles increasingly rely on Ethernet backbones, service-oriented archit
 - Trust anchors and certificates must be managed carefully.
 - Security controls must be evaluated at both the network and system levels.
 
-This project demonstrates those concepts using a small and understandable system that can be discussed clearly on a resume, in an interview, or in a technical review.
+This project applies those concepts using a small, understandable system.
 
 ## Security Features
 
@@ -72,11 +80,11 @@ This is deliberate. The project is showing layered security:
 - TLS protects the transport
 - AES-GCM protects the application data itself
 
-This makes it easy to explain the difference between channel security and payload security.
+This separates channel security from payload security.
 
 ### 4. Integrity Verification with SHA-256
 
-The plaintext payload is hashed before transmission, and the receiving side recomputes the hash after decryption. This provides a clean demonstration of integrity validation at the application layer.
+The plaintext payload is hashed before transmission, and the receiving side recomputes the hash after decryption. This provides application-layer integrity validation.
 
 ### 5. Secure Logging
 
@@ -216,7 +224,7 @@ This is a core part of the project because automotive security work is not just 
 
 ## Cryptography Mapping
 
-This project demonstrates several concepts expected in security interviews:
+This project uses several common security building blocks:
 
 - AES: AES-256-GCM for payload confidentiality and authenticated encryption
 - RSA: RSA-2048 private/public keys for certificate-backed trust establishment
@@ -314,7 +322,7 @@ On the first execution, the project automatically generates:
 
 These files are excluded from version control through `.gitignore`.
 
-This approach demonstrates PKI fundamentals while keeping local execution simple.
+This approach keeps local execution simple while using certificate-based trust.
 
 ## Logging Model
 
@@ -339,7 +347,7 @@ The logging design intentionally avoids:
 - cryptographic key logging
 - full sensitive message body storage
 
-This demonstrates secure observability without creating a secondary data-exposure problem.
+This supports observability without creating a secondary data-exposure problem.
 
 ## Wireshark Validation
 
@@ -366,7 +374,7 @@ This project is intentionally scoped for clarity. It does not attempt to be a pr
 - no secure boot or firmware-chain integration
 - no direct CAN or SOME/IP stack integration
 
-These limitations are discussed further in the threat model and are useful talking points in an interview because they show awareness of the gap between a demonstrator and a deployable system.
+These limitations are discussed further in the threat model.
 
 ## Future Improvements
 
@@ -379,13 +387,7 @@ Reasonable next steps for expanding the project:
 - simulate gateway segmentation between vehicle domains
 - add replay protection with timestamps and nonce tracking
 - model backend fleet telemetry ingestion
-- extend to a C-based client or embedded-side prototype
-
-## Resume-Ready Project Bullets
-
-- Built a Python-based secure telemetry communication platform that modeled ADAS-to-backend messaging using TCP sockets, TLS 1.3, mutual certificate authentication, and structured JSON messaging.
-- Implemented layered cryptographic protections with PKI-backed transport security, ephemeral AES-256-GCM application encryption, and SHA-256 integrity verification to demonstrate defense-in-depth for embedded and automotive data flows.
-- Produced a complete security engineering package including structured audit logging, architecture documentation, STRIDE-based threat modeling, and risk assessment with practical mitigation recommendations.
+- extend to a C-based client or embedded-side implementation
 
 ## Documentation Index
 
@@ -395,4 +397,4 @@ Reasonable next steps for expanding the project:
 
 ## License and Usage
 
-This repository is intended for educational, demonstration, and portfolio use. Review and adapt the design before using any part of it in a production or safety-critical environment.
+This repository is intended for educational and local lab use. Review and adapt the design before using any part of it in a production or safety-critical environment.

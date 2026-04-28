@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document identifies threats against the secure communication demo, evaluates their risk, and maps them to mitigation strategies. The goal is to show structured security reasoning, not just implementation of cryptographic primitives.
+This document identifies threats against the secure communication demo, evaluates their risk, and maps them to mitigation strategies. The goal is to document structured security reasoning, not just implementation of cryptographic primitives.
 
 ## Methodology
 
@@ -54,7 +54,7 @@ Out of scope:
 
 - the attacker can inspect and inject network traffic
 - the attacker does not initially control both endpoints
-- the local root CA is trusted for demo purposes
+- the local root CA is trusted for local validation
 - private keys are stored locally without hardware-backed protection
 - the system is executed in a local development environment
 
@@ -139,7 +139,7 @@ An attacker may repeatedly connect or attempt handshake abuse to exhaust server 
 
 Current posture:
 
-- acceptable for a local demonstrator
+- acceptable for local validation
 
 Production mitigation ideas:
 
@@ -162,7 +162,7 @@ Mitigation:
 
 ## Residual Risks
 
-The project intentionally leaves several residual risks in place because they are beyond the scope of a local demonstrator:
+The project intentionally leaves several residual risks in place because they are beyond the scope of a local validation environment:
 
 - no certificate revocation mechanism
 - no HSM or TPM-backed key protection
@@ -182,7 +182,7 @@ Highest-priority risks in this design are:
 3. exposure of sensitive telemetry
 4. compromise of the trust anchor
 
-The implemented controls reduce those risks meaningfully for a local demonstration, but do not eliminate the need for stronger operational controls in a real deployment.
+The implemented controls reduce those risks for a local validation environment, but do not eliminate the need for stronger operational controls in a real deployment.
 
 ## Mitigation Summary Table
 
@@ -206,9 +206,9 @@ This threat model reflects the kind of reasoning expected when evaluating:
 - service-oriented in-vehicle network designs
 - backend-connected automotive data flows
 
-It is intentionally structured so it can support:
+It is structured to support:
 
 - design reviews
-- portfolio discussion
-- cybersecurity interview walkthroughs
-- resume project explanation
+- architecture review
+- risk review
+- implementation review
